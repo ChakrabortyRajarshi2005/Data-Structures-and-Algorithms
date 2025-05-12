@@ -1,5 +1,5 @@
 /*
-    Learning LinkedList in C++ by Raghav Garg Sir from PW Skills
+    Learning LinkedList in C++ 
     This is Lecture 1 of LinkedList
 */
 
