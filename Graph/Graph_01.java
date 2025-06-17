@@ -124,3 +124,83 @@ import java.math.*;
 
 
 
+
+
+
+import java.util.ArrayList;
+
+// Edge class with source, destination, and weight
+class Edge {
+    int src, dest, wt;
+
+    public Edge(int src, int dest, int wt) {
+        this.src = src;
+        this.dest = dest;
+        this.wt = wt;
+    }
+}
+
+public class Graph {
+    // Function to create the graph
+    public static void createGraph(ArrayList<Edge>[] graph) {
+        // Initialize the array of ArrayLists
+        for (int i = 0; i < graph.length; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        // Original edges
+        graph[0].add(new Edge(0, 1, 5));
+        graph[0].add(new Edge(0, 2, 3));
+        graph[1].add(new Edge(1, 3, 6));
+        graph[2].add(new Edge(2, 3, 7));
+        graph[3].add(new Edge(3, 4, 4));
+        graph[4].add(new Edge(4, 0, 2));
+
+        // Additional edges
+        graph[1].add(new Edge(1, 2, 1));
+        graph[2].add(new Edge(2, 4, 8));
+        graph[4].add(new Edge(4, 1, 9));
+    }
+
+    // Function to print the graph
+    public static void printGraph(ArrayList<Edge>[] graph) {
+        for (int i = 0; i < graph.length; i++) {
+            for (Edge e : graph[i]) {
+                System.out.println("From " + e.src + " to " + e.dest + " with weight " + e.wt);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int V = 5; // Number of vertices
+        ArrayList<Edge>[] graph = new ArrayList[V];
+
+        createGraph(graph);
+        printGraph(graph);
+    }
+}
+
+/*
+    GRAPH STRUCTURE (Directed & Weighted):
+
+            (0)
+           /   \
+         5/     \3
+         /       \
+       (1) -----> (2)
+        | 1        | \
+       6|         7|  \8
+        |          |   \
+       (3) ------> (4)
+             4      ↑
+                   9|
+                   (1)
+
+    Nodes: 0, 1, 2, 3, 4
+    Directed Edges with Weights:
+    0 -> 1 (5), 0 -> 2 (3)
+    1 -> 3 (6), 1 -> 2 (1)
+    2 -> 3 (7), 2 -> 4 (8)
+    3 -> 4 (4)
+    4 -> 0 (2), 4 -> 1 (9)
+*/
