@@ -204,3 +204,80 @@ public class Graph {
     3 -> 4 (4)
     4 -> 0 (2), 4 -> 1 (9)
 */
+
+
+
+
+
+
+
+--------------------------------------------------------------
+
+
+
+
+
+      import java.util.*;
+
+public class GraphDFS {
+    static class Graph {
+        int V;
+        ArrayList<ArrayList<Integer>> adj;
+
+        // Constructor
+        Graph(int V) {
+            this.V = V;
+            adj = new ArrayList<>();
+            for (int i = 0; i < V; i++)
+                adj.add(new ArrayList<>());
+        }
+
+        // Add edge
+        void addEdge(int u, int v) {
+            adj.get(u).add(v);
+            adj.get(v).add(u); // Omit this if it's a directed graph
+        }
+
+        // DFS Utility
+        void dfsUtil(int v, boolean[] visited) {
+            visited[v] = true;
+            System.out.print(v + " ");
+
+            for (int neighbor : adj.get(v)) {
+                if (!visited[neighbor])
+                    dfsUtil(neighbor, visited);
+            }
+        }
+
+        // DFS from a given start node
+        void dfs(int start) {
+            boolean[] visited = new boolean[V];
+            System.out.print("DFS traversal starting from node " + start + ": ");
+            dfsUtil(start, visited);
+            System.out.println();
+        }
+    }
+
+    // Main
+    public static void main(String[] args) {
+        Graph g = new Graph(5);
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 3);
+        g.addEdge(1, 4);
+
+        /*
+         Graph visualization:
+
+             0
+            / \
+           1   2
+          / \
+         3   4
+
+        Output of DFS from node 0: 0 1 3 4 2
+        */
+
+        g.dfs(0);
+    }
+}
